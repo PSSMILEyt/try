@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jay Krishna Stationery</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* --- General --- */
+body { font-family: 'Roboto', sans-serif; margin:0; padding:0; background:#f9f9f9; color:#333; }
+a { text-decoration:none; color:#007BFF; }
+h1,h2,h3,h4 { margin:0; }
+
+/* --- Header --- */
+header { background:#ff6f61; color:white; text-align:center; padding:30px 20px; position:relative; }
+header h1 { font-size:2.2em; margin-bottom:10px; }
+header p { font-size:1.1em; }
+nav { margin-top:15px; }
+nav a { margin:0 15px; font-weight:bold; }
+
+/* --- Language Toggle --- */
+.lang-toggle { position:absolute; top:15px; right:20px; }
+.lang-toggle button { margin-left:10px; padding:8px 12px; border:none; border-radius:5px; cursor:pointer; font-weight:bold; }
+.lang-toggle button:hover { background:rgba(255,255,255,0.3); }
+
+/* --- Carousel --- */
+.carousel { position:relative; max-width:1200px; margin:20px auto; overflow:hidden; border-radius:10px; }
+.slides { display:flex; transition: transform 0.5s ease; }
+.slide { min-width:100%; position:relative; color:white; font-size:2em; display:flex; justify-content:center; align-items:center; height:300px; font-weight:bold; text-shadow: 2px 2px 5px rgba(0,0,0,0.7); }
+.slide1 { background:url('https://images.unsplash.com/photo-1593642634367-d91a135587b5?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; }
+.slide2 { background:url('https://images.unsplash.com/photo-1605902711622-cfb43c443aa6?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; }
+.slide3 { background:url('https://images.unsplash.com/photo-1567016542796-1c18a0d39fa8?auto=format&fit=crop&w=1400&q=80') center/cover no-repeat; }
+.carousel-buttons { position:absolute; top:50%; width:100%; display:flex; justify-content:space-between; transform:translateY(-50%); }
+.carousel-buttons span { cursor:pointer; font-size:2em; color:white; padding:10px; background:rgba(0,0,0,0.3); border-radius:50%; transition:0.3s; }
+.carousel-buttons span:hover { background:rgba(0,0,0,0.6); }
+
+/* --- Sections --- */
+section { padding:50px 20px; max-width:1200px; margin:auto; }
+section h2 { font-size:1.8em; color:#ff6f61; margin-bottom:20px; text-align:center; }
+
+/* --- Books & Items Grid --- */
+.books-grid, .items-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
+.book-card, .item-card { background:white; border-radius:10px; padding:20px; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:transform 0.2s; }
+.book-card:hover, .item-card:hover { transform:translateY(-5px) scale(1.03); }
+.book-card h3 { color:#ff6f61; margin-bottom:10px; }
+.item-card h4 { margin-bottom:10px; color:#007BFF; }
+.item-card img { border-radius:8px; transition: transform 0.3s; width:100%; height:180px; object-fit:cover; }
+.item-card img:hover { transform:scale(1.05); }
+
+/* --- Inputs --- */
+#bookSearch, #categoryFilter { padding:12px; width:100%; max-width:400px; margin:0 auto 30px auto; display:block; border-radius:5px; border:1px solid #ccc; }
+
+/* --- Contact --- */
+.contact-section { text-align:center; background:#007BFF; color:white; padding:40px 20px; }
+.contact-section a { color:white; font-weight:bold; margin:0 10px; display:inline-block; background:rgba(255,255,255,0.2); padding:10px 20px; border-radius:5px; transition:background 0.2s; }
+.contact-section a:hover { background:rgba(255,255,255,0.4); }
+
+/* --- Footer --- */
+footer { background:#222; color:white; text-align:center; padding:20px; }
+
+/* --- Responsive --- */
+@media(max-width:600px){ .slide { font-size:1.5em; height:200px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1 id="logo">जय कृष्ण स्टेशरी ✏️📚🏀</h1>
+  <p id="tagline">जनकपुरमधाम उपमहानगरपालिका-२४, बसहियाको माहारानी मन्दिर नजिक, R.J.English Boarding School को छेउमा</p>
+  <nav>
+    <a href="#books" id="booksNav">Books 📖</a>
+    <a href="#stationery" id="itemsNav">Stationery & Sports 🖊️🏀</a>
+    <a href="#contact" id="contactNav">Contact 📞</a>
+  </nav>
+  <div class="lang-toggle">
+    <button onclick="setLanguage('en')">English</button>
+    <button onclick="setLanguage('ne')">नेपाली</button>
+  </div>
+</header>
+
+<!-- Carousel Banner -->
+<div class="carousel">
+  <div class="slides" id="slides">
+    <div class="slide slide1" id="slide1">सुपथ मुल्यमा स्टेशनरी 🖊️</div>
+    <div class="slide slide2" id="slide2">खेलकुदका सम्पूर्ण सामग्री 🏀</div>
+    <div class="slide slide3" id="slide3">PG → 10+ किताब 📚</div>
+  </div>
+  <div class="carousel-buttons">
+    <span id="prev">&#10094;</span>
+    <span id="next">&#10095;</span>
+  </div>
+</div>
+
+<!-- Books Section -->
+<section id="books">
+  <h2 id="booksTitle">📚 Books for PG to Class 10+</h2>
+  <input type="text" id="bookSearch" placeholder="🔍 Search for a book...">
+  <div class="books-grid" id="booksGrid"></div>
+</section>
+
+<!-- Stationery & Sports Section -->
+<section id="stationery">
+  <h2 id="itemsTitle">🖊️ Stationery & Sports Items</h2>
+  <select id="categoryFilter">
+    <option value="all" id="allOption">All Categories 🏷️</option>
+    <option value="stationery" id="stationeryOption">Stationery ✏️</option>
+    <option value="sports" id="sportsOption">Sports 🏀</option>
+  </select>
+  <div class="items-grid" id="itemsGrid"></div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="contact-section">
+  <h2 id="contactTitle">📞 Contact Us</h2>
+  <p id="contactPhone">मो. 9819662506</p>
+  <a href="https://www.facebook.com/rupesh.lal.karna" target="_blank">Facebook Rupesh Lal Karna</a>
+  <a href="https://wa.me/9779819662506" target="_blank">WhatsApp 📲</a>
+</section>
+
+<footer>
+  <p>© 2026 जय कृष्ण स्टेशरी - All Rights Reserved</p>
+</footer>
+
+<script>
+// --- Carousel ---
+let currentSlide = 0;
+const slides = document.getElementById("slides");
+const totalSlides = slides.children.length;
+document.getElementById("next").onclick = () => { currentSlide = (currentSlide+1)%totalSlides; updateSlide(); }
+document.getElementById("prev").onclick = () => { currentSlide = (currentSlide-1+totalSlides)%totalSlides; updateSlide(); }
+function updateSlide(){ slides.style.transform = `translateX(-${currentSlide*100}%)`; }
+setInterval(()=>{ currentSlide=(currentSlide+1)%totalSlides; updateSlide(); },5000);
+
+// --- Books Data ---
+const booksData = [
+  { class:"PG", books:["🌟 Story Book","🔤 ABC Book","🎨 Drawing Book"], books_ne:["🌟 कथा पुस्तक","🔤 एबीसी पुस्तक","🎨 चित्रकला पुस्तक"] },
+  { class:"1", books:["Hamro Nepali 1","My First English Book","Ganit 1"], books_ne:["हाम्रो नेपाली १","मेरो पहिलो अंग्रेजी पुस्तक","गणित १"] },
+  { class:"2", books:["Hamro Nepali 2","My Second English Book","Ganit 2"], books_ne:["हाम्रो नेपाली २","मेरो दोस्रो अंग्रेजी पुस्तक","गणित २"] },
+  { class:"3", books:["Hamro Nepali 3","My English Book 3","Ganit 3"], books_ne:["हाम्रो नेपाली ३","मेरो अंग्रेजी पुस्तक ३","गणित ३"] },
+  { class:"4", books:["Hamro Nepali 4","My English Book 4","Ganit 4"], books_ne:["हाम्रो नेपाली ४","मेरो अंग्रेजी पुस्तक ४","गणित ४"] },
+  { class:"5", books:["Hamro Nepali 5","My English Book 5","Ganit 5"], books_ne:["हाम्रो नेपाली ५","मेरो अंग्रेजी पुस्तक ५","गणित ५"] },
+  { class:"6", books:["Hamro Nepali 6","My English Book 6","Ganit 6","Science 6"], books_ne:["हाम्रो नेपाली ६","मेरो अंग्रेजी पुस्तक ६","गणित ६","विज्ञान ६"] },
+  { class:"7", books:["Hamro Nepali 7","My English Book 7","Ganit 7","Science 7"], books_ne:["हाम्रो नेपाली ७","मेरो अंग्रेजी पुस्तक ७","गणित ७","विज्ञान ७"] },
+  { class:"8", books:["Hamro Nepali 8","My English Book 8","Ganit 8","Science 8"], books_ne:["हाम्रो नेपाली ८","मेरो अंग्रेजी पुस्तक ८","गणित ८","विज्ञान ८"] },
+  { class:"9", books:["Hamro Nepali 9","My English Book 9","Ganit 9","Science 9","Social Studies 9"], books_ne:["हाम्रो नेपाली ९","मेरो अंग्रेजी पुस्तक ९","गणित ९","विज्ञान ९","सामाजिक अध्ययन ९"] },
+  { class:"10", books:["Hamro Nepali 10","My English Book 10","Ganit 10","Science 10","Social Studies 10"], books_ne:["हाम्रो नेपाली १०","मेरो अंग्रेजी पुस्तक १०","गणित १०","विज्ञान १०","सामाजिक अध्ययन १०"] }
+];
+
+// --- Stationery & Sports Items ---
+const itemsData = [
+  { name:"Notebook 📒", name_ne:"नोटबुक 📒", price:"Rs. 50", img:"https://images.unsplash.com/photo-1581091012184-3c924e1a1b29?auto=format&fit=crop&w=400&q=60", category:"stationery" },
+  { name:"Pen ✏️", name_ne:"कलम ✏️", price:"Rs. 20", img:"https://images.unsplash.com/photo-1586201375761-83865001e2d3?auto=format&fit=crop&w=400&q=60", category:"stationery" },
+  { name:"Cricket Bat 🏏", name_ne:"क्रिकेट ब्याट 🏏", price:"Rs. 1500", img:"https://images.unsplash.com/photo-1592496012996-c8ce7b1a56d3?auto=format&w=400&q=60", category:"sports" },
+  { name:"Basketball 🏀", name_ne:"बास्केटबल 🏀", price:"Rs. 1200", img:"https://images.unsplash.com/photo-1582502379907-4c1d7b7c9e48?auto=format&w=400&q=60", category:"sports" }
+];
+
+let currentLang = 'ne'; // Default Nepali
+
+function displayBooks(filter=""){
+  const booksGrid = document.getElementById("booksGrid");
+  booksGrid.innerHTML="";
+  booksData.forEach(item=>{
+    const booksList = currentLang==='en'?item.books:item.books_ne;
+    const filteredBooks = booksList.filter(b=>b.toLowerCase().includes(filter.toLowerCase()));
+    if(filteredBooks.length>0){
+      const card = document.createElement("div");
+      card.className="book-card";
+      card.innerHTML=`<h3>${currentLang==='en'?'Class':'कक्षा'} ${item.class}</h3><ul>${filteredBooks.map(b=>"<li>"+b+"</li>").join("")}</ul>`;
+      booksGrid.appendChild(card);
+    }
+  });
+}
+
+function displayItems(filter="all"){
+  const itemsGrid = document.getElementById("itemsGrid");
+  itemsGrid.innerHTML="";
+  itemsData.forEach(item=>{
+    if(filter==="all" || item.category===filter){
+      const name = currentLang==='en'?item.name:item.name_ne;
+      const card = document.createElement("div");
+      card.className="item-card";
+      card.innerHTML=`<h4>${name}</h4><p>${item.price}</p><img src="${item.img}" alt="${name}">`;
+      itemsGrid.appendChild(card);
+    }
+  });
+}
+
+// Language toggle
+function setLanguage(lang){
+  currentLang=lang;
+  // Header / Nav
+  document.getElementById("logo").innerText = lang==='en'?"Jay Krishna Stationery ✏️📚🏀":"जय कृष्ण स्टेशरी ✏️📚🏀";
+  document.getElementById("tagline").innerText = lang==='en'?"Janakpurdham-24 near Maharani Temple, next to R.J. English Boarding School":"जनकपुरमधाम उपमहानगरपालिका-२४, बसहियाको माहारानी मन्दिर नजिक, R.J.English Boarding School को छेउमा";
+  document.getElementById("booksNav").innerText = lang==='en'?"Books 📖":"पुस्तकहरु 📖";
+  document.getElementById("itemsNav").innerText = lang==='en'?"Stationery & Sports 🖊️🏀":"स्टेशनरी & खेलकुद 🖊️🏀";
+  document.getElementById("contactNav").innerText = lang==='en'?"Contact 📞":"सम्पर्क 📞";
+  document.getElementById("booksTitle").innerText = lang==='en'?"📚 Books for PG to Class 10+":"📚 PG देखि १० कक्षासम्मका पुस्तकहरु";
+  document.getElementById("itemsTitle").innerText = lang==='en'?"🖊️ Stationery & Sports Items":"🖊️ स्टेशनरी र खेलकुदका सामग्रीहरु";
+  document.getElementById("allOption").innerText = lang==='en'?"All Categories 🏷️":"सबै श्रेणी 🏷️";
+  document.getElementById("stationeryOption").innerText = lang==='en'?"Stationery ✏️":"स्टेशनरी ✏️";
+  document.getElementById("sportsOption").innerText = lang==='en'?"Sports 🏀":"खेलकुद 🏀";
+  document.getElementById("contactTitle").innerText = lang==='en'?"📞 Contact Us":"📞 सम्पर्क गर्नुहोस्";
+  document.getElementById("contactPhone").innerText = lang==='en'?"Phone: 9819662506":"मो. 9819662506";
+  // Carousel
+  document.getElementById("slide1").innerText = lang==='en'?"Affordable Stationery 🖊️":"सुपथ मुल्यमा स्टेशनरी 🖊️";
+  document.getElementById("slide2").innerText = lang==='en'?"All Sports Items 🏀":"खेलकुदका सम्पूर्ण सामग्री 🏀";
+  document.getElementById("slide3").innerText = lang==='en'?"PG → 10+ Books 📚":"PG → 10+ किताब 📚";
+  displayBooks();
+  displayItems(document.getElementById("categoryFilter").value);
+}
+
+// Search filter
+document.getElementById("bookSearch").addEventListener("input", e=>displayBooks(e.target.value));
+document.getElementById("categoryFilter").addEventListener("change", e=>displayItems(e.target.value));
+
+// Initial display
+setLanguage(currentLang);
+</script>
+
+</body>
+</html>
